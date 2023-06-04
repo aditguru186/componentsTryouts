@@ -1,7 +1,21 @@
 import React, { useEffect, useState } from "react";
 
+let Circle = ({id,radius,color }) =>{
+  return(
+    <div
+          id={id}
+          style={{
+            width: radius,
+            height:radius,
+            borderRadius: "50%",
+            backgroundColor: color
+          }}
+        />
+  )
+}
+
 var App = () => {
-  const [circle1Radius, setCircle1Radius] = useState(100);
+  const [circle1Radius, setCircle1Radius] = useState(150);
   const [circle2Radius, setCircle2Radius] = useState(100);
   const [circle1Color, setCircle1Color] = useState("#aafffb");
   const [circle2Color, setCircle2Color] = useState("#aafffb");
@@ -17,35 +31,34 @@ var App = () => {
   }, []);
   return (
     <div>
+      <div style={{padding:"20px", display: "flex", "align-items": "center"}}>
+        {/* <div
+          id="circle2"
+          style={{
+            width: circle2Radius,
+            height: circle2Radius,
+            borderRadius: "50%",
+            backgroundColor: circle2Color
+          }}
+        /> */}
+        <Circle id={'circle1'} radius={circle1Radius} width={circle1Color}/>
+        <Circle id={'circle2'} radius={circle2Radius} width={circle2Color}/>
+      </div>
+      <p>Selected Circle is : {circleSelected}</p>
+      <p>Radius : {circleSelected === 'circle1' ? circle1Radius : circle2Radius}</p>
+      <p>Color : {circleSelected === 'circle1' ? circle1Color : circle2Color}</p>
       <input
         type="color"
-        onChange={(event) => {
-          if (circleSelected == "circle1") {
-            setCircle1Color(event.target.value);
-          } else {
-            setCircle2Color(event.target.value);
-          }
+        onChange={(event) => { (circleSelected == "circle1") ?
+            setCircle1Color(event.target.value) : setCircle2Color(event.target.value);
         }}
       />
-      <div
-        id="circle1"
-        style={{
-          width: circle1Radius,
-          height: circle1Radius,
-          borderRadius: "50%",
-          backgroundColor: circle1Color
-        }}
-      />
-      <div
-        id="circle2"
-        style={{
-          width: circle2Radius,
-          height: circle2Radius,
-          borderRadius: "50%",
-          backgroundColor: circle2Color
-        }}
-      />
-      <p>Selected Circle is : {circleSelected}</p>
+      <input type="text"
+      placeholder="Radius To be Entered here"
+      onChange={(event)=>{
+        (circleSelected === "circle1") ? setCircle1Radius(event.target.value): setCircle2Radius(event.target.value);
+      }}/>
+
     </div>
   );
 };
