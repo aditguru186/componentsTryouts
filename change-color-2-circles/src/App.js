@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 let Circle = ({id,radius,color }) =>{
+  console.log("CirlceId : "+id+" Radius : "+radius)
   return(
     <div
           id={id}
@@ -15,7 +16,7 @@ let Circle = ({id,radius,color }) =>{
 }
 
 var App = () => {
-  const [circle1Radius, setCircle1Radius] = useState(150);
+  const [circle1Radius, setCircle1Radius] = useState(100);
   const [circle2Radius, setCircle2Radius] = useState(100);
   const [circle1Color, setCircle1Color] = useState("#aafffb");
   const [circle2Color, setCircle2Color] = useState("#aafffb");
@@ -32,17 +33,8 @@ var App = () => {
   return (
     <div>
       <div style={{padding:"20px", display: "flex", "align-items": "center"}}>
-        {/* <div
-          id="circle2"
-          style={{
-            width: circle2Radius,
-            height: circle2Radius,
-            borderRadius: "50%",
-            backgroundColor: circle2Color
-          }}
-        /> */}
-        <Circle id={'circle1'} radius={circle1Radius} width={circle1Color}/>
-        <Circle id={'circle2'} radius={circle2Radius} width={circle2Color}/>
+        <Circle id={'circle1'} radius={circle1Radius} color={circle1Color}/>
+        <Circle id={'circle2'} radius={circle2Radius} color={circle2Color}/>
       </div>
       <p>Selected Circle is : {circleSelected}</p>
       <p>Radius : {circleSelected === 'circle1' ? circle1Radius : circle2Radius}</p>
